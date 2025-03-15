@@ -1,41 +1,61 @@
 #include <stdio.h>
 
-int main(){
-    int i = 1, j = 1;
+//Função recursiva para imprimir números de "numero" até 1
+//Movimento da Torre
+void moverTorre(int casas){
+    if (casas > 0){
 
-    //Movimento da Torre 5 casas para a direita.
-    printf("Movimento da Torre\n");
-    while (i <= 5){
         printf("Direita\n");
-        i++;
+        moverTorre(casas - 1);
+        //Chama a si mesma com numero - 1
     }
-    printf("\n");
-    
-    //Movimento do bispo 5 casas para cima e à direita.
-    printf("Movimento do Bispo\n");
-    do {
-        printf("Cima e à direita\n");
-        i++;
-    } while (i <= 10);
-    printf("\n");
-
-    //Movimento da Rainha 8 casas para a esquerda
-    printf("Movimento da Rainha\n");
-    for (int i = 1; i <= 8; i++){
+}
+//Movimento da Rainha
+void moverRainha(int casas){
+    if (casas > 0){
         printf("Esquerda\n");
+        moverRainha(casas - 1);
     }
-    printf("\n");
-
-    //Movimento Cavalo duas casas para baixo e uma casa para a esquerda
-    printf("Movimento do Cavalo\n");
-    for (i = 1; i <= 1; i++)
-    {
-        while (j <= 2)
-        {
-            printf("Baixo \n");
-            j++;
+}
+//Movimento do Bispo
+void moverBispo(int casas){
+    if (casas > 0){
+        int pulo = 5;
+        if (pulo > 0){
+            printf("Cima\n");
+            printf("Direita\n");
+            moverBispo(casas -1);
+            pulo--;
         }
-        printf("Esquerda\n");
+    } 
+}
+//Movimento do Cavalo
+void moverCavalo(int casas){
+    if (casas > 0){
+        printf("Cima\n");
+        moverCavalo(casas - 1);        
+    } if (casas == 0){
+    printf("Direita\n");
     }
+}
+
+int main(){
+
+    printf("Movimento da Torre\n");
+    moverTorre(5);
+    printf("\n");
+
+    printf("Movimento da Rainha\n");
+    moverRainha(8);
+    printf("\n");
+
+    printf("Movimento do Bispo\n");
+    moverBispo(5);
+    printf("\n");
+
+    printf("Movimento do Cavalo\n");
+    moverCavalo(2);
+    printf("\n");
+
     return 0;
 }
